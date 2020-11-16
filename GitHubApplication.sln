@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterfaceTests", "UserInterfaceTests\UserInterfaceTests.csproj", "{8B64A19C-1408-4C4F-8E82-BD2180F60BF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserInterfaceTests", "UserInterfaceTests\UserInterfaceTests.csproj", "{8B64A19C-1408-4C4F-8E82-BD2180F60BF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{51F3F268-E36F-40FA-8307-D72EBF4AB99F}"
+	ProjectSection(SolutionItems) = preProject
+		code-analysis.ruleset = code-analysis.ruleset
+		stylecop.json = stylecop.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
