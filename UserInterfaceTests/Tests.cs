@@ -1,24 +1,32 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using UserInterfaceTests.Pages;
 
 namespace UserInterfaceTests
 {
-    public class Tests
+    [TestFixture]
+    public class Tests : BaseUiTests
     {
-        private IWebDriver webDriver;
-
-        [OneTimeSetUp]
-        public void RunBeforeAnyTest()
+        [Test]
+        public void IsMainPage_MainPageTitleEqualsExpected_TrueReturned()
         {
-            webDriver = new ChromeDriver();
-            webDriver.Manage().Window.Maximize();
+            var expected = "GitHub: Where the world builds software · GitHub";
+            var actual = GetTitle();
+
+            Assert.AreEqual(expected, actual, "You don't found the main page.");
         }
 
-        [OneTimeTearDown]
-        public void RunAfterAnyTests()
+        [Test]
+        public void TryToSignIn_SuccessfulLogin_TrueReturned()
         {
-            webDriver.Close();
+            var indexPage = new IndexPage(webDriver);
+            Assert.DoesNotThrow(() => { indexPage.ClickToSigInBtton().SignIn(); });
+        }
+
+        private string GetTitle()
+        {
+            Awaiter.Wait(webDriver, By.TagName("title"));
+            return webDriver.Title;
         }
     }
 }
