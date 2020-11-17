@@ -12,7 +12,7 @@ namespace UserInterfaceTests.Pages
             this.webDriver = webDriver;
         }
 
-        public NewProjectPage CreateNewProject()
+        public NewProjectPage GoToNewProjectForm()
         {
             Awaiter.Wait(webDriver, newProjectLocator);
             webDriver.FindElement(newProjectLocator).Click();

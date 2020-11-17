@@ -19,5 +19,10 @@ namespace TestsFeatures
         /// </summary>
         void RunBeforeEachTest();
 
+        /// <summary>
+        /// Method executs after calling each tests.
+        /// </summary>
+        void RunAfterEachTest();
+
     }
 }
