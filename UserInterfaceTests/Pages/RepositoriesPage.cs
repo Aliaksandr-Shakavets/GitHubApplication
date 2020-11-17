@@ -11,5 +11,13 @@ namespace UserInterfaceTests.Pages
         {
             this.webDriver = webDriver;
         }
+
+        public NewRepositoryPage ClickToNewRepository()
+        {
+            Awaiter.Wait(webDriver, newRepositoryLocator);
+            webDriver.FindElement(newRepositoryLocator).Click();
+
+            return new NewRepositoryPage(webDriver);
+        }
     }
 }

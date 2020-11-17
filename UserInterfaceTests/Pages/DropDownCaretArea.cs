@@ -32,5 +32,11 @@ namespace UserInterfaceTests.Pages
             webDriver.FindElement(yourProjects).Click();
             return new ProjectsPage(webDriver);
         }
+
+        public void SignOut()
+        {
+            Awaiter.Wait(webDriver, signOut);
+            webDriver.FindElement(signOut).Click();
+        }
     }
 }
