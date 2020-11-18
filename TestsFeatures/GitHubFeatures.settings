@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Login" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">TestAccount-automation</Value>
+      <Value Profile="(Default)">AutomationAccount-web</Value>
     </Setting>
     <Setting Name="Password" Type="System.String" Scope="Application">
       <Value Profile="(Default)">PasswordCanForget</Value>
