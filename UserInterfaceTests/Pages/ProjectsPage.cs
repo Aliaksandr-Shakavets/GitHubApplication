@@ -1,22 +1,17 @@
-﻿using OpenQA.Selenium;
-using UserInterfaceTests.Pages.Locators;
+﻿using UserInterfaceTests.Pages_Elements;
 
 namespace UserInterfaceTests.Pages
 {
-    internal class ProjectsPage : ProjectsPageLocators
+    internal class ProjectsPage : Footer
     {
-        private readonly IWebDriver webDriver;
+        private readonly ProjectsPageElements pageElements = new ProjectsPageElements();
 
-        public ProjectsPage(IWebDriver webDriver)
+        public ProjectFormPage GoToNewProjectForm()
         {
-            this.webDriver = webDriver;
-        }
+            var newProjectButton = pageElements.GetNewProjectButtom();
+            newProjectButton.Click();
 
-        public NewProjectPage GoToNewProjectForm()
-        {
-            Awaiter.Wait(webDriver, newProjectLocator);
-            webDriver.FindElement(newProjectLocator).Click();
-            return new NewProjectPage(webDriver);
+            return new ProjectFormPage();
         }
     }
 }

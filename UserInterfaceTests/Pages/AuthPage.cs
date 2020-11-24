@@ -1,42 +1,47 @@
-﻿using OpenQA.Selenium;
-using TestsFeatures;
-using UserInterfaceTests.Pages.Locators;
+﻿using UserInterfaceTests.Pages_Elements;
 
 namespace UserInterfaceTests.Pages
 {
-    internal class AuthPage : AuthPageLocators
+    internal class AuthPage
     {
-        private readonly IWebDriver webDriver;
+        private readonly AuthPageElements pageElements = new AuthPageElements();
 
-        public AuthPage(IWebDriver webDriver)
+        public AuthPage EnterPassword(string password)
         {
-            this.webDriver = webDriver;
+            if (string.IsNullOrEmpty(password))
+            {
+                throw new System.ArgumentException($"'{nameof(password)}' cannot be null or empty", nameof(password));
+            }
+
+            const int minPasswordLength = 8;
+
+            if (password.Length < minPasswordLength)
+            {
+                throw new System.ArgumentException($"'{nameof(password)}' length cannot be less than 8 characters", nameof(password));
+            }
+
+            pageElements.GetPasswordInput().SendKeys(password);
+
+            return this;
         }
 
-        public MainUserPage SignIn()
+        public AuthPage EnterLogin(string login)
         {
-            EnterTheLoggin();
-            EnterThePassword();
-            Submit();
-            return new MainUserPage(webDriver);
+            if (string.IsNullOrEmpty(login))
+            {
+                throw new System.ArgumentException($"'{nameof(login)}' cannot be null or empty", nameof(login));
+            }
+
+            pageElements.GetLoginInput().SendKeys(login);
+
+            return this;
         }
 
-        private void Submit()
+        public UserProfilePage Submit()
         {
-            Awaiter.Wait(webDriver, submitButton);
-            webDriver.FindElement(submitButton).Click();
-        }
+            pageElements.GetSubmitButton().Click();
 
-        private void EnterThePassword()
-        {
-            Awaiter.Wait(webDriver, userPasswordLocator);
-            webDriver.FindElement(userPasswordLocator).SendKeys(GitHubFeatures.Default.Password);
-        }
-
-        private void EnterTheLoggin()
-        {
-            Awaiter.Wait(webDriver, userNameLocator);
-            webDriver.FindElement(userNameLocator).SendKeys(GitHubFeatures.Default.Login);
+            return new UserProfilePage();
         }
     }
 }

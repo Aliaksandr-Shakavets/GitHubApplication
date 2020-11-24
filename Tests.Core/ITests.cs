@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TestsFeatures
+namespace UserInterfaceTests
 {
     public interface ITests : IDisposable
     {
@@ -11,7 +11,7 @@ namespace TestsFeatures
 
         /// <summary>
         /// Method executs after calling all tests.
-        /// </summary>     
+        /// </summary>
         void RunAfterAnyTests();
 
         /// <summary>
@@ -23,6 +23,5 @@ namespace TestsFeatures
         /// Method executs after calling each tests.
         /// </summary>
         void RunAfterEachTest();
-
     }
 }

@@ -1,22 +1,17 @@
-﻿using OpenQA.Selenium;
-using UserInterfaceTests.Pages.Locators;
+﻿using UserInterfaceTests.Pages_Elements;
 
 namespace UserInterfaceTests.Pages
 {
-    internal class IndexPage : IndexPageLocators
+    internal class IndexPage
     {
-        private readonly IWebDriver webDriver;
+        private readonly IndexPageElements pageElements = new IndexPageElements();
 
-        public IndexPage(IWebDriver webDriver)
+        public AuthPage SigInButtonClick()
         {
-            this.webDriver = webDriver;
-        }
+            var signInButton = pageElements.GetSignInButton();
+            signInButton.Click();
 
-        public AuthPage ClickToSigInBtton()
-        {
-            Awaiter.Wait(webDriver, signInButtonLocator);
-            webDriver.FindElement(signInButtonLocator).Click();
-            return new AuthPage(webDriver);
+            return new AuthPage();
         }
     }
 }
