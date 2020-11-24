@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <RunConfiguration>
+    <MaxCpuCount>1</MaxCpuCount>
+  </RunConfiguration>
+
+    <TestRunParameters>
+      <Parameter name="Url" value="https://www.github.com"/>
+      <Parameter name="Login" value="Qa-tech"/>
+      <Parameter name="Password" value="PasswordCanForget"/>
+      <Parameter name="Email" value="qa-tech@mail.ru"/>
+      <Parameter name="EmailPassword" value="PasswordCanForget"/>
+      <Parameter name="PersonalAccessToken" value="8067f3b0717fed278c684a89b127496382a4a669"/>
+      <!--You have to add a type of browser like as: 'chrome', 'firefox', 'opera'-->
+      <Parameter name="BrowserType" value="chrome"/>
+
+    </TestRunParameters>
+    
+</RunSettings>

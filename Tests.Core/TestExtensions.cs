@@ -1,9 +1,8 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
-namespace TestsFeatures
+namespace Tests.Core
 {
-    public static class TestHelper
+    public static class TestExtensions
     {
         public static string GetRandomString(int length)
         {
@@ -17,11 +16,10 @@ namespace TestsFeatures
             return randomString.ToString();
         }
 
-        public static char GetRandomChar()
+        private static char GetRandomChar()
         {
-            var numericCode = new Random().Next(0, 26);
+            var numericCode = new System.Random().Next(0, 26);
             char randomChar = (char)('A' + numericCode);
-
             return randomChar;
         }
     }

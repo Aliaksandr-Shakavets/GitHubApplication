@@ -1,23 +1,17 @@
-﻿using OpenQA.Selenium;
-using UserInterfaceTests.Pages.Locators;
+﻿using UserInterfaceTests.Pages_Elements;
 
 namespace UserInterfaceTests.Pages
 {
-    internal class RepositoriesPage : RepsitoriesPageLocators
+    internal class RepositoriesPage : Footer
     {
-        private readonly IWebDriver webDriver;
+        private readonly RepsitoriesPageElements pageElements = new RepsitoriesPageElements();
 
-        public RepositoriesPage(IWebDriver webDriver)
+        public RepositoryFormPage ClickToNewRepository()
         {
-            this.webDriver = webDriver;
-        }
+            var newRepositoryButton = pageElements.GetNewRepositoryButton();
+            newRepositoryButton.Click();
 
-        public NewRepositoryPage ClickToNewRepository()
-        {
-            Awaiter.Wait(webDriver, newRepositoryLocator);
-            webDriver.FindElement(newRepositoryLocator).Click();
-
-            return new NewRepositoryPage(webDriver);
+            return new RepositoryFormPage();
         }
     }
 }

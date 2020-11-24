@@ -1,23 +1,20 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using TestsFeatures;
+using Tests.Core;
 using UserInterfaceTests.Pages;
 
 namespace UserInterfaceTests
 {
     public class BaseUiTests : ITests
     {
-        private protected IWebDriver webDriver;
-        private readonly Uri gitHubUri = new Uri(GitHubFeatures.Default.Url);
+        private readonly IWebDriver webDriver = WebDriverSingleton.GetWebDriver();
         private bool disposedValue;
 
         [OneTimeSetUp]
+
         public void RunBeforeAnyTests()
         {
-            webDriver = new ChromeDriver();
-            webDriver.Navigate().GoToUrl(gitHubUri);
+            webDriver.Navigate().GoToUrl(AppSettings.Url);
             webDriver.Manage().Window.Maximize();
         }
 
@@ -37,14 +34,14 @@ namespace UserInterfaceTests
         [TearDown]
         public void RunAfterEachTest()
         {
-            ScrollToTop();
+            webDriver.ScrollToTop();
             SignOut();
         }
 
         public void Dispose()
         {
             Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            System.GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
@@ -60,24 +57,9 @@ namespace UserInterfaceTests
             }
         }
 
-        private protected string GetTitle()
+        private static void SignOut()
         {
-            Awaiter.Wait(webDriver, By.TagName("title"));
-            return webDriver.Title;
-        }
-
-        private void SignOut()
-        {
-            if (webDriver.Url != gitHubUri.ToString())
-            {
-                new MainUserPage(webDriver).ClickDropDownCaret().SignOut();
-            }
-        }
-
-        private void ScrollToTop()
-        {
-            var jsExecutable = "window.scrollTo(0, 0);";
-            (webDriver as IJavaScriptExecutor).ExecuteScript(jsExecutable);
+            new Footer().DropDownCaretClick().SignOut();
         }
     }
 }
