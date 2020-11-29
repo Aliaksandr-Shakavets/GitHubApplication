@@ -1,4 +1,5 @@
-﻿using UserInterfaceTests.Pages_Elements;
+﻿using Tests.Core;
+using UserInterfaceTests.Pages_Elements;
 
 namespace UserInterfaceTests.Pages
 {

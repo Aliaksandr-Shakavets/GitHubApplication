@@ -11,7 +11,6 @@ namespace Tests.Core
             Login = TestContext.Parameters[nameof(Login)];
             Password = TestContext.Parameters[nameof(Password)];
             Email = TestContext.Parameters[nameof(Email)];
-            EmailPassword = TestContext.Parameters[nameof(EmailPassword)];
             AccessToken = TestContext.Parameters[nameof(AccessToken)];
             BrowserType = TestContext.Parameters[nameof(BrowserType)];
         }

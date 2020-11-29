@@ -7,7 +7,7 @@ namespace UserInterfaceTests
 {
     public class BaseUiTests : ITests
     {
-        private readonly IWebDriver webDriver = WebDriverSingleton.GetWebDriver();
+        private protected readonly IWebDriver webDriver = WebDriverSingleton.GetWebDriver();
         private bool disposedValue;
 
         [OneTimeSetUp]
@@ -34,7 +34,6 @@ namespace UserInterfaceTests
         [TearDown]
         public void RunAfterEachTest()
         {
-            webDriver.ScrollToTop();
             SignOut();
         }
 
@@ -43,6 +42,8 @@ namespace UserInterfaceTests
             Dispose(disposing: true);
             System.GC.SuppressFinalize(this);
         }
+
+        public void SignOut() => new Footer().DropDownCaretClick().SignOut();
 
         protected virtual void Dispose(bool disposing)
         {
@@ -55,11 +56,6 @@ namespace UserInterfaceTests
 
                 disposedValue = true;
             }
-        }
-
-        private static void SignOut()
-        {
-            new Footer().DropDownCaretClick().SignOut();
         }
     }
 }
