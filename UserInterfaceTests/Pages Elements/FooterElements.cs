@@ -7,11 +7,11 @@ namespace UserInterfaceTests.Pages_Elements
     {
         private readonly By dropDownCaret = By.XPath("//summary[@aria-label='View profile and more']");
 
-        public IWebElement GetDropDownCaret()
+        public IWebElement FindDropDownCaret()
         {
             webDriver.ScrollToTop();
 
-            return webDriver.GetVisibleElement(dropDownCaret);
+            return webDriver.FindElement(dropDownCaret);
         }
     }
 }

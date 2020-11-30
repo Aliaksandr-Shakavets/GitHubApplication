@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using Tests.Core.Services;
 
 namespace Tests.Core
 {
@@ -22,6 +24,13 @@ namespace Tests.Core
             return webDriver.FindElement(locator);
         }
 
+        public static IWebDriver ClickToUnclicableElement(this IWebDriver webDriver, IWebElement element)
+        {
+            new Actions(webDriver).MoveToElement(element).Click().Build().Perform();
+
+            return webDriver;
+        }
+
         public static IWebDriver ScrollToTop(this IWebDriver webDriver) => ScrollTo(webDriver, Direction.ToTop);
 
         public static IWebDriver ScrollToBottom(this IWebDriver webDriver) => ScrollTo(webDriver, Direction.ToBottom);
@@ -36,24 +45,22 @@ namespace Tests.Core
             {
                 throw new System.ArgumentNullException(nameof(webDriver));
             }
-
-            var jsExecutable = direction switch
+            
+            _ = direction switch
             {
-                Direction.ToTop => "window.scrollTo(0, 0);",
-                Direction.ToBottom => "window.scrollTo(0, document.body.scrollHeight);",
-                Direction.ToLeft => "arguments[0].scrollLeft = arguments[0].offsetWidth",
-                Direction.ToRight => "arguments[0].scrollRight = arguments[0].offsetWidth",
-                _ => throw new System.ArgumentException($"{nameof(direction)} not found", nameof(direction)),
+                Direction.ToTop => JavaScriptExecutorService.Execute("window.scrollTo(0, 0);"),
+                Direction.ToBottom => JavaScriptExecutorService.Execute("window.scrollTo(0, document.body.scrollHeight);"),
+                Direction.ToLeft => JavaScriptExecutorService.Execute("arguments[0].scrollLeft = arguments[0].offsetWidth"),
+                Direction.ToRight => JavaScriptExecutorService.Execute("arguments[0].scrollRight = arguments[0].offsetWidth"),
+                _ => throw new System.NotImplementedException(),
             };
-
-            (webDriver as IJavaScriptExecutor).ExecuteScript(jsExecutable);
 
             return webDriver;
         }
 
         private static void Wait(IWebDriver webDriver, By locator)
         {
-            var timeOutFromSeconds = System.TimeSpan.FromSeconds(15);
+            var timeOutFromSeconds = System.TimeSpan.FromSeconds(10);
             var webDriverAwaiter = new WebDriverWait(webDriver, timeOutFromSeconds);
             webDriverAwaiter.Until((w) => w.FindElement(locator));
         }

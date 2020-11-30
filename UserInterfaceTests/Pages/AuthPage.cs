@@ -43,5 +43,16 @@ namespace UserInterfaceTests.Pages
 
             return new UserProfilePage();
         }
+
+        public bool IsSigInSuccessful()
+        {
+            var message = pageElements.FindSignInErrorMessage().Text;
+            if (string.IsNullOrEmpty(message))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

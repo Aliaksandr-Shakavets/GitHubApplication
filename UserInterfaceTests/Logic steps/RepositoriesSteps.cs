@@ -1,29 +1,25 @@
-﻿using Tests.Core;
+﻿using Tests.Core.Data_access_layer;
 using UserInterfaceTests.Pages;
 
 namespace UserInterfaceTests.Logic_steps
 {
     internal static class RepositoriesSteps
     {
-        internal static RepositoriesPage CreateNewRepository(string repositoryName = default)
+        internal static RepositoriesPage CreateNewRepository(RepositoryFormInfo repositoryForm)
         {
-            var repoName = string.IsNullOrEmpty(repositoryName) ? TestExtensions.GetRandomString(8) : repositoryName;
-
             return GoToRepositorisePage()
-                .ClickToNewRepository()
-                .SetName(repoName)
-                .SetDescriptions(TestExtensions.GetRandomString(18))
-                .SetVisibility(isPublic: false)
+                .GetRepositoryFormPage(repositoryForm)
+                .SetName()
+                .SetDescriptions()
+                .SetVisibility()
                 .AddReadmeRadioButton()
                 .AddGitIgnore()
-                .AddGitIgnoreTemplate()
-                .SetIgnoreFilter("VisualStudio")
                 .Submit();
         }
 
         internal static RepositoriesPage GoToRepositorisePage()
         {
-            return AuthenticationSteps.Invoke()
+            return AuthenticationSteps.SignIn()
                 .DropDownCaretClick()
                 .GoToRepositoriesPage();
         }
