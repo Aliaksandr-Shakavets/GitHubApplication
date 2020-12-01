@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.ObjectModel;
+using OpenQA.Selenium;
 using Tests.Core;
 
 namespace UserInterfaceTests.Pages_Elements
@@ -11,5 +12,7 @@ namespace UserInterfaceTests.Pages_Elements
         public IWebElement GetNewRepositoryButton() => webDriver.GetVisibleElement(newRepositoryLocator);
 
         public IWebElement GetExistRepository() => webDriver.GetVisibleElement(existRepositoryLocator);
+
+        public ReadOnlyCollection<IWebElement> GetRepositories() => webDriver.GetVisibleElements(existRepositoryLocator);
     }
 }

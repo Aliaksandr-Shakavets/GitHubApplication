@@ -27,18 +27,42 @@ namespace UserInterfaceTests
         [Test]
         public void CheckCreatingNewRepositories_RepositoryPageHasNewRepository_TrueReturned()
         {
-                var generatedRepositoryName = TestExtensions.GetRandomString(length: 8);
-                var repositoryForm = new RepositoryFormInfo()
-                {
-                    Name = generatedRepositoryName,
-                    Description = "test repo",
-                    NeedToAddReadmi = true,
-                    RepositoryVisibility = Visibility.Private,
-                    NeedToAddGitIgnore = true,
-                    GitIgnoreTemplate = "VisualStudio",
-                };
+            var generatedRepositoryName = TestExtensions.GetRandomString(length: 8);
+            var repositoryForm = new RepositoryFormInfo()
+            {
+                Name = generatedRepositoryName,
+                Description = "test creating repository",
+                NeedToAddReadmi = true,
+                RepositoryVisibility = Visibility.Private,
+                NeedToAddGitIgnore = true,
+                GitIgnoreTemplate = "VisualStudio",
+            };
 
-                RepositoriesSteps.CreateNewRepository(repositoryForm);
+            RepositoriesSteps.CreateNewRepository(repositoryForm);
+            var actual = RepositoriesSteps.ContainsRepository(generatedRepositoryName);
+
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void DeleteCreatedRepository_RepositoryDeletedFromAccount_TrueReturned()
+        {
+            var generatedRepositoryName = TestExtensions.GetRandomString(length: 8);
+            var repositoryForm = new RepositoryFormInfo()
+            {
+                Name = generatedRepositoryName,
+                Description = "test creating and deleting",
+                NeedToAddReadmi = true,
+                RepositoryVisibility = Visibility.Private,
+                NeedToAddGitIgnore = true,
+                GitIgnoreTemplate = "VisualStudio",
+            };
+
+            var newRepository = RepositoriesSteps.CreateNewRepository(repositoryForm);
+            RepositoriesSteps.DeleteRepository(newRepository);
+            var actual = RepositoriesSteps.ContainsRepository(generatedRepositoryName);
+
+            Assert.False(actual);
         }
     }
 }

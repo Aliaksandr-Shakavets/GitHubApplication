@@ -2,7 +2,7 @@
 
 namespace UserInterfaceTests.Pages
 {
-    internal class RepositoryPageView
+    internal class RepositoryPageView : Footer
     {
         private readonly RepositoryPageViewElements pageElements = new RepositoryPageViewElements();
 
