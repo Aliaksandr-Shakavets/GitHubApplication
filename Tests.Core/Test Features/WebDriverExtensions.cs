@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.ObjectModel;
 using Tests.Core.Services;
 
 namespace Tests.Core
@@ -22,6 +23,23 @@ namespace Tests.Core
             Wait(webDriver, locator);
 
             return webDriver.FindElement(locator);
+        }
+
+        public static ReadOnlyCollection<IWebElement> GetVisibleElements(this IWebDriver webDriver, By locator)
+        {
+            if (webDriver is null)
+            {
+                throw new System.ArgumentNullException(nameof(webDriver));
+            }
+
+            if (locator is null)
+            {
+                throw new System.ArgumentNullException(nameof(locator));
+            }
+
+            Wait(webDriver, locator);
+
+            return webDriver.FindElements(locator);
         }
 
         public static IWebDriver ClickToUnclicableElement(this IWebDriver webDriver, IWebElement element)

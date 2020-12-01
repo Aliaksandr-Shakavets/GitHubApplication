@@ -1,4 +1,5 @@
-﻿using Tests.Core.Data_access_layer;
+﻿using System.Linq;
+using Tests.Core.Data_access_layer;
 using UserInterfaceTests.Pages_Elements;
 
 namespace UserInterfaceTests.Pages
@@ -15,12 +16,19 @@ namespace UserInterfaceTests.Pages
             return new RepositoryFormPage(repositoryForm);
         }
 
-        public RepositoryPageView JumpToExistRepositoryPage()
+        public RepositoryPageView GetExistsRepositoryPage()
         {
             var existRepositoryPage = pageElements.GetExistRepository();
             existRepositoryPage.Click();
 
             return new RepositoryPageView();
+        }
+
+        public bool ContainsRepository(string repositoryName)
+        {
+            var existsRepositories = pageElements.GetRepositories();
+
+            return existsRepositories.Any(r => r.Text == repositoryName);
         }
     }
 }

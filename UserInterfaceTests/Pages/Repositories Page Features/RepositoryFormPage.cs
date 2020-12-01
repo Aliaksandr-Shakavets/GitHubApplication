@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System.Linq;
 using Tests.Core.Data_access_layer;
 using UserInterfaceTests.Pages_Elements;
 
