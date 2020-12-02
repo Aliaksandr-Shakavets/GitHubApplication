@@ -1,5 +1,4 @@
-﻿
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using Tests.Core;
 
 namespace UserInterfaceTests.Pages_Elements
