@@ -17,14 +17,19 @@ namespace UserInterfaceTests.Logic_steps
                 .Submit();
         }
 
-        internal static RepositoriesPage GoToRepositorisePage()
+        internal static RepositoriesPage GoToRepositorisePage(bool needToSignIn = true)
         {
-            return AuthenticationSteps.SignIn()
-                .DropDownCaretClick()
-                .GoToRepositoriesPage();
+            if (needToSignIn)
+            {
+                return AuthenticationSteps.SignIn()
+                                .DropDownCaretClick()
+                                .GoToRepositoriesPage();
+            }
+
+            return new Footer().DropDownCaretClick().GoToRepositoriesPage();
         }
 
-        internal static bool ContainsRepository(string repositoryName) => new Footer().DropDownCaretClick().GoToRepositoriesPage().ContainsRepository(repositoryName);
+        internal static bool ContainsRepository(string repositoryName) => GoToRepositorisePage(false).ContainsRepository(repositoryName);
 
         internal static RepositoriesPage DeleteRepository(RepositoryPageView repositoryPage)
         {

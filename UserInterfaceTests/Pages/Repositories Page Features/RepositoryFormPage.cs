@@ -47,7 +47,7 @@ namespace UserInterfaceTests.Pages
 
         public RepositoryFormPage SetVisibility()
         {
-            var radioButton = form.RepositoryVisibility switch
+            var radioButton = form.Visibility switch
             {
                 Visibility.Public => pageElements.GetPublicVisibilityButton(),
                 Visibility.Private => pageElements.GetPrivateVisibilityButton(),

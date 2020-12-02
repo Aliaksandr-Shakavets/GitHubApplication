@@ -13,6 +13,5 @@ namespace UserInterfaceTests.Pages
 
             return new SettingsPage();
         }
-
     }
 }

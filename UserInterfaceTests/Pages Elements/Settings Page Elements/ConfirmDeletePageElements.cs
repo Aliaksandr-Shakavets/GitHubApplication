@@ -1,5 +1,5 @@
-﻿using OpenQA.Selenium;
-using System.Linq;
+﻿using System.Linq;
+using OpenQA.Selenium;
 using Tests.Core;
 
 namespace UserInterfaceTests.Pages_Elements

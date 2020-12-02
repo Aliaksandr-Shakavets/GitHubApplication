@@ -25,7 +25,7 @@ namespace UserInterfaceTests
         }
 
         [Test]
-        public void CheckCreatingNewRepositories_RepositoryPageHasNewRepository_TrueReturned()
+        public void CheckCreatingNewRepositories_RepositoryPageWillExistNewRepository_TrueReturned()
         {
             var generatedRepositoryName = TestExtensions.GetRandomString(length: 8);
             var repositoryForm = new RepositoryFormInfo()
@@ -33,7 +33,7 @@ namespace UserInterfaceTests
                 Name = generatedRepositoryName,
                 Description = "test creating repository",
                 NeedToAddReadmi = true,
-                RepositoryVisibility = Visibility.Private,
+                Visibility = Visibility.Private,
                 NeedToAddGitIgnore = true,
                 GitIgnoreTemplate = "VisualStudio",
             };
@@ -45,7 +45,7 @@ namespace UserInterfaceTests
         }
 
         [Test]
-        public void DeleteCreatedRepository_RepositoryDeletedFromAccount_TrueReturned()
+        public void DeleteCreatedRepository_RepositoryDeletedFromAccount_FalseReturned()
         {
             var generatedRepositoryName = TestExtensions.GetRandomString(length: 8);
             var repositoryForm = new RepositoryFormInfo()
@@ -53,7 +53,7 @@ namespace UserInterfaceTests
                 Name = generatedRepositoryName,
                 Description = "test creating and deleting",
                 NeedToAddReadmi = true,
-                RepositoryVisibility = Visibility.Private,
+                Visibility = Visibility.Private,
                 NeedToAddGitIgnore = true,
                 GitIgnoreTemplate = "VisualStudio",
             };
@@ -63,6 +63,41 @@ namespace UserInterfaceTests
             var actual = RepositoriesSteps.ContainsRepository(generatedRepositoryName);
 
             Assert.False(actual);
+        }
+
+        [Test]
+        public void CreateNewProject_ProjectPageWillExistNewProjectAsOpen_TrueReturned()
+        {
+            var generatedRepositoryName = TestExtensions.GetRandomString(length: 6);
+            var projectForm = new ProjectFormInfo()
+            {
+                Name = generatedRepositoryName,
+                Description = "test creating",
+                Visibility = Visibility.Public,
+            };
+
+            ProjectsSteps.CreateNewProject(projectForm);
+            var actual = ProjectsSteps.ContainsOpenProject(generatedRepositoryName);
+
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void CloseCreatedProject_NewProjectWillExistInClosedProjectsAndUnexistsInOpenProjects_TrueReturned()
+        {
+            var generatedProjectName = TestExtensions.GetRandomString(length: 6);
+            var projectForm = new ProjectFormInfo()
+            {
+                Name = generatedProjectName,
+                Description = "this project needs to be moved to closed projects",
+                Visibility = Visibility.Public,
+            };
+
+            ProjectsSteps.CreateNewProject(projectForm);
+            ProjectsSteps.CloseProject(generatedProjectName);
+            var actual = ProjectsSteps.ContainsClosedProject(generatedProjectName) && !ProjectsSteps.ContainsOpenProject(generatedProjectName);
+
+            Assert.True(actual);
         }
     }
 }
