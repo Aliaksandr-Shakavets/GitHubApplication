@@ -11,7 +11,7 @@ namespace Tests.Core
             Login = TestContext.Parameters[nameof(Login)];
             Password = TestContext.Parameters[nameof(Password)];
             Email = TestContext.Parameters[nameof(Email)];
-            AccessToken = TestContext.Parameters[nameof(AccessToken)];
+            PersonalAccessToken = TestContext.Parameters[nameof(PersonalAccessToken)];
             BrowserType = TestContext.Parameters[nameof(BrowserType)];
         }
 
@@ -25,7 +25,7 @@ namespace Tests.Core
 
         public static string EmailPassword { get; }
 
-        public static string AccessToken { get; }
+        public static string PersonalAccessToken { get; }
 
         public static string BrowserType { get; }
     }

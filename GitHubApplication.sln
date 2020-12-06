@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Core", "Tests.Core\Tests.Core.csproj", "{8E3AE45A-DBF9-4E38-A158-701665BD36F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Core", "Tests.Core\Tests.Core.csproj", "{8E3AE45A-DBF9-4E38-A158-701665BD36F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAPITests", "RestAPITests\RestAPITests.csproj", "{093779F4-A22A-47F6-B1E9-CB257E8A582D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8E3AE45A-DBF9-4E38-A158-701665BD36F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E3AE45A-DBF9-4E38-A158-701665BD36F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E3AE45A-DBF9-4E38-A158-701665BD36F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093779F4-A22A-47F6-B1E9-CB257E8A582D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093779F4-A22A-47F6-B1E9-CB257E8A582D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093779F4-A22A-47F6-B1E9-CB257E8A582D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093779F4-A22A-47F6-B1E9-CB257E8A582D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
