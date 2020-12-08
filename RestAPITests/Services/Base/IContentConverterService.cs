@@ -5,10 +5,13 @@ namespace RestAPITests.Services
 {
     internal interface IContentConverterService
     {
-        ICollection<RepositoryContext> ConvertToRepoitories(string content);
-        UserContext ConvertToUser(string content);
-        RepositoryContext ConvertToRepository(string content);
+        ConverterTemplates Templates { get; }
+
+        ICollection<IRepositoryContext> ConvertToRepoitories(string content);
+        IUserContext ConvertToUser(string content);
+        IRepositoryContext ConvertToRepository(string content);
         string GetShaValue(string content);
-        ICollection<BrancheContext> ConvertToBranches(string content);
+        ICollection<IBrancheContext> ConvertToBranches(string content);
+        IExceptionMessage ConvertToExceptionMessage(string content);
     }
 }

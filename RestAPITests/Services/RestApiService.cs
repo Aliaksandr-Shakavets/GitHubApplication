@@ -5,13 +5,21 @@ using ServiceStack.Host;
 
 namespace RestAPITests.Services
 {
-    public class RestApiService : IRestApiService
+    internal class RestApiService : IRestApiService
     {
-        private readonly IRestClient restClient;
+        public IRestClient RestClient { get; }
 
-        public RestApiService(IClient client)
+        public IContentConverterService Converter { get; }
+
+        public RestApiService(IClient client, IContentConverterService contentConverterService)
         {
-            restClient = new RestClient()
+            if (client is null)
+            {
+                throw new ArgumentNullException(nameof(client));
+            }
+
+            Converter = contentConverterService ?? throw new ArgumentNullException(nameof(contentConverterService));
+            RestClient = new RestClient()
             {
                 BaseUrl = client.BaseUri,
                 Authenticator = client.Authenticator,
@@ -21,10 +29,10 @@ namespace RestAPITests.Services
         public async Task<IRestResponse> ExecuteRequest(IRestRequest request)
         {
             Guard(request);
-            var response = await restClient.ExecuteAsync(request);
+            var response = await RestClient.ExecuteAsync(request);
             if (!response.IsSuccessful)
             {
-                var exception = new ContentConverterService().ConvertToExceptionMessage(response.Content);
+                var exception = Converter.ConvertToExceptionMessage(response.Content);
 
                 throw new HttpException($"Status code: {(int)response.StatusCode}\n " +
                     $"message: '{exception.Message}'\n" +

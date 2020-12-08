@@ -50,7 +50,7 @@ namespace RestAPITests
 
             var repository = await RepositoryController.AddRepositoryAsync(newRepository);
             var branch = await RepositoryController.AddBrancheAsync(repository, "new-test-branch");
-            var branches = (await RepositoryController.GetBranches(repository)).ToList();
+            var branches = (await RepositoryController.GetBranchesAsync(repository)).ToList();
 
             Assert.Contains(branch, branches);
         }

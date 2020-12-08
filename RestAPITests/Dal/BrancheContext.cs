@@ -2,7 +2,7 @@
 
 namespace RestAPITests.Dal
 {
-    internal class BrancheContext
+    internal class BrancheContext : IBrancheContext
     {
         [DataMember(Name = "ref")]
         public string Ref { get; set; }
@@ -10,7 +10,7 @@ namespace RestAPITests.Dal
         [DataMember(Name = "done_id")]
         public string NodeId { get; set; }
 
-        public BranchDetails Details { get; set; }
+        public IBranchDetails Details { get; set; }
 
         public override bool Equals(object obj)
         {

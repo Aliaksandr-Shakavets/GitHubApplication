@@ -1,14 +1,13 @@
 ﻿using RestAPITests.Dal;
-using RestAPITests.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RestAPITests.Controllers
+namespace RestAPITests.Services
 {
-    internal interface IRepositoryController
+    internal interface IRepositoryService
     {
-        IAuthenticationController AuthController { get; }
-        IRepositoryService RepositoryService { get; set; }
+        IRestApiService ApiService { get; }
+        IContentConverterService Converter { get; }
 
         Task<IBrancheContext> AddBrancheAsync(IRepositoryContext repository, string brancheName);
         Task<IRepositoryContext> AddRepositoryAsync(IRepositoryRequestBody repository);

@@ -2,7 +2,7 @@
 
 namespace RestAPITests.Dal
 {
-    internal class BranchDetails
+    internal class BranchDetails : IBranchDetails
     {
         [DataMember(Name = "sha")]
         public string Sha { get; set; }

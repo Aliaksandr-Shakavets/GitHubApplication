@@ -2,12 +2,12 @@
 
 namespace RestAPITests.Dal
 {
-    internal class ExceptionMessage
+    internal class ExceptionMessage : IExceptionMessage
     {
         [DataMember(Name = "message")]
         public string Message { get; set; }
 
-        [DataMember(Name ="errors")]
-        public ErrorDetails Details { get; set; }
+        [DataMember(Name = "errors")]
+        public IErrorDetails Details { get; set; }
     }
 }

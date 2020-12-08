@@ -2,7 +2,7 @@
 
 namespace RestAPITests.Dal
 {
-    internal class RepositoryContext
+    internal class RepositoryContext : IRepositoryContext
     {
         [DataMember(Name = "id")]
         public uint Id { get; set; }
