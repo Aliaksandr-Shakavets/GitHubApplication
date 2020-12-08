@@ -9,7 +9,7 @@
       <Parameter name="Login" value="Qa-tech"/>
       <Parameter name="Password" value="PasswordCanForget"/>
       <Parameter name="Email" value="qa-tech@mail.ru"/>
-      <Parameter name="PersonalAccessToken" value="7003f6531e98ad4590b0939c44895d41763d96f3"/>
+      <Parameter name="PersonalAccessToken" value="5303d29556c1e206da00c5fa743955f03015890e"/>
       <!--You have to add a type of browser like as: 'chrome', 'firefox', 'opera'-->
       <Parameter name="BrowserType" value="chrome"/>
 

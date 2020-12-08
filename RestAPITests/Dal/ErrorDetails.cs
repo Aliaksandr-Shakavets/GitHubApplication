@@ -2,9 +2,9 @@
 
 namespace RestAPITests.Dal
 {
-    internal class ErrorDetails
+    internal class ErrorDetails : IErrorDetails
     {
-        [DataMember(Name ="field")]
+        [DataMember(Name = "field")]
         public string Field { get; set; }
 
         [DataMember(Name = "message")]

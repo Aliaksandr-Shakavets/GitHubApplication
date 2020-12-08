@@ -2,7 +2,7 @@
 
 namespace RestAPITests.Dal
 {
-    internal class RepositoryRequestBody
+    internal class RepositoryRequestBody : IRepositoryRequestBody
     {
         [DataMember(Name = "name")]
         public string Name { get; set; }

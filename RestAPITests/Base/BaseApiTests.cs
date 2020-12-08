@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using NUnit.Framework;
 using RestAPITests.Dal;
 using RestAPITests.Services;
@@ -13,14 +14,18 @@ namespace RestAPITests
         public IRepositoryController RepositoryController { get; private set; }
         public IAuthenticationController AuthenticationController { get; private set; }
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
+            var guard = new GuardService();
             Client = new GithubClient();
-            ApiService = new RestApiService(Client);
-            Converter = new ContentConverterService();
-            AuthenticationController = new AuthenticationController(ApiService, Converter);
-            RepositoryController = new RepositoryController(ApiService, AuthenticationController, Converter);
-        }        
+            Converter = new ContentConverterService(new ConverterTemplates(), guard);
+            ApiService = new RestApiService(Client, Converter);
+            AuthenticationController = new AuthenticationController(new AuthenticationService(ApiService, Converter));
+            RepositoryController = new RepositoryController(AuthenticationController, new RepositoryService(ApiService, Converter, guard));
+        }
+
+        [OneTimeTearDown]
+        public async Task RemoveAllCreatedRepositoriesAsync() => await RepositoryController.RemoveAllCreatedRepositoriesAsync();
     }
 }
